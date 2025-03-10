@@ -73,10 +73,10 @@ function App() {
               
               <div className="space-y-2">
                 <p className="text-xl sm:text-2xl text-gray-300">
-                  Top-Tier DMA Cheats and Software
+                  Top-Tier DMA Cheese and Software
                 </p>
                 <p className="text-gray-500">
-                  Aimbot, ESP, Wallhacks, and More
+                  Aimtraining, ESP32, Walls, and More
                 </p>
               </div>
             </motion.div>

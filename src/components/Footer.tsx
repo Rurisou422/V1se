@@ -8,8 +8,8 @@ const Footer = () => {
           <div className="space-y-2">
             <div className="text-xl font-bold text-white">DIVINER</div>
             <div className="text-sm text-gray-400">
-              <div>Diviner.gg Top-Tier DMA Cheats and Software</div>
-              <div>Aimbot, ESP, Wallhacks, and More</div>
+              <div>Diviner.gg Top-Tier DMA Cheese and Software</div>
+              <div>Aimtraining, ESP32, Walls, and More</div>
             </div>
           </div>
           
