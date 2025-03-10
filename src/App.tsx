@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Stats from './components/Stats';
@@ -17,12 +16,6 @@ function App() {
     const min = 15;
     const max = 85;
     return min + (Math.random() * (max - min));
-  };
-
-  // Function to get initial random vertical position including above and below viewport
-  const getInitialVerticalPosition = () => {
-    // Generate positions from -100% to 200% to ensure continuous flow
-    return Math.random() * 300 - 100;
   };
 
   return (
