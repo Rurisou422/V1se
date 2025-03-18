@@ -362,43 +362,53 @@ const ProductCard = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
     transition={{ duration: 0.5 }}
-      className="bg-[#141A27]/70 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-800/50"
+      className="bg-[#141A27]/70 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-800/50 transform scale-95"
     >
-      <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-3">
+      <div className="flex items-center justify-between p-3">
+        <div className="flex items-center space-x-2">
           {/* Icon based on category */}
-          <div className={`w-6 h-6 ${premium ? 'text-blue-500' : 'text-gray-400'}`}>
+          <div className={`w-5 h-5 ${premium ? 'text-blue-500' : 'text-gray-400'}`}>
             <CategoryIcon category={primaryCategory} />
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-white">{title}</h3>
-            <p className={`text-sm ${premium ? 'text-blue-400' : 'text-gray-400'}`}>{tags}</p>
+            <h3 className="text-lg font-semibold text-white">{title}</h3>
+            <p className={`text-xs ${premium ? 'text-blue-400' : 'text-gray-400'}`}>{tags}</p>
           </div>
         </div>
-        <div className={`px-3 py-1 rounded text-sm font-medium ${premium ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-500/20 text-gray-300'}`}>
+        <div className={`px-2 py-0.5 rounded text-xs font-medium ${premium ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-500/20 text-gray-300'}`}>
           {premium ? 'PREMIUM' : 'STANDARD'}
         </div>
       </div>
       
-      <div className="p-6 space-y-4">
-        <ul className="space-y-2">
+      <div className="p-4 space-y-3">
+        <ul className="space-y-1.5">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-2 text-gray-300">
-              <span className="text-gray-400 mt-1">•</span>
+            <li key={index} className="flex items-start gap-1.5 text-gray-300 text-sm">
+              <span className="text-gray-400 mt-1 text-xs">•</span>
               <span>{feature}</span>
             </li>
           ))}
         </ul>
         
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center pt-3">
           <motion.button 
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ 
+              scale: 1.03,
+              boxShadow: premium ? "0 0 20px rgba(59, 130, 246, 0.6)" : "0 0 15px rgba(107, 114, 128, 0.5)" 
+            }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.1, ease: "easeOut" }}
-            className={`w-full py-3 font-medium transition-all duration-100 rounded-md text-white ${premium ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-700 hover:bg-gray-600'}`}
+            transition={{ duration: 0 }}
+            className={`w-full py-2.5 text-sm font-medium rounded-md text-white relative overflow-hidden ${
+              premium 
+                ? 'bg-blue-600 hover:bg-blue-700 shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
+                : 'bg-gray-700 hover:bg-gray-600'
+            }`}
             onClick={() => onOpenDetail(product)}
           >
-            Learn More
+            <span className="relative z-10">Learn More</span>
+            {premium && (
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-400/10 to-blue-600/0 animate-glow-pulse"></div>
+            )}
           </motion.button>
       </div>
     </div>
@@ -502,38 +512,97 @@ const Products = () => {
           
           {/* Category Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
-            <button 
+            <motion.button 
               onClick={() => setActiveCategory('all')}
-              className={`px-6 py-3 rounded-md transition-all ${activeCategory === 'all' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(59, 130, 246, 0.6)"
+              }}
+              transition={{ duration: 0 }}
+              className={`px-8 py-3 rounded-lg font-medium shadow-lg relative overflow-hidden ${
+                activeCategory === 'all' 
+                ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white ring-1 ring-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
+                : 'bg-gray-900/80 text-gray-300 border border-gray-800 hover:border-blue-500/50'
+              }`}
             >
-              All Products
-            </button>
-            <button 
+              <span className="relative z-10">All Products</span>
+              {activeCategory === 'all' && (
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600/60 to-blue-400/60 opacity-0"
+                  animate={{ opacity: [0, 0.5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                />
+              )}
+            </motion.button>
+            
+            <motion.button 
               onClick={() => setActiveCategory('game')}
-              className={`px-6 py-3 rounded-md transition-all ${activeCategory === 'game' 
-                ? 'bg-gray-700 text-white' 
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(59, 130, 246, 0.6)"
+              }}
+              transition={{ duration: 0 }}
+              className={`px-8 py-3 rounded-lg font-medium shadow-lg relative overflow-hidden flex items-center gap-2 ${
+                activeCategory === 'game' 
+                ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white ring-1 ring-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
+                : 'bg-gray-900/80 text-gray-300 border border-gray-800 hover:border-blue-500/50'
+              }`}
             >
-              Game Software
-            </button>
-            <button 
+              <span className="relative z-10">Game Software</span>
+              {activeCategory === 'game' && (
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600/60 to-blue-400/60 opacity-0"
+                  animate={{ opacity: [0, 0.5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                />
+              )}
+            </motion.button>
+            
+            <motion.button 
               onClick={() => setActiveCategory('firmware')}
-              className={`px-6 py-3 rounded-md transition-all ${activeCategory === 'firmware' 
-                ? 'bg-gray-700 text-white' 
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(59, 130, 246, 0.6)"
+              }}
+              transition={{ duration: 0 }}
+              className={`px-8 py-3 rounded-lg font-medium shadow-lg relative overflow-hidden flex items-center gap-2 ${
+                activeCategory === 'firmware' 
+                ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white ring-1 ring-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
+                : 'bg-gray-900/80 text-gray-300 border border-gray-800 hover:border-blue-500/50'
+              }`}
             >
-              Firmware
-            </button>
-            <button 
+              <span className="relative z-10">Firmware</span>
+              {activeCategory === 'firmware' && (
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600/60 to-blue-400/60 opacity-0"
+                  animate={{ opacity: [0, 0.5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                />
+              )}
+            </motion.button>
+            
+            <motion.button 
               onClick={() => setActiveCategory('hardware')}
-              className={`px-6 py-3 rounded-md transition-all ${activeCategory === 'hardware' 
-                ? 'bg-gray-700 text-white' 
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(59, 130, 246, 0.6)"
+              }}
+              transition={{ duration: 0 }}
+              className={`px-8 py-3 rounded-lg font-medium shadow-lg relative overflow-hidden flex items-center gap-2 ${
+                activeCategory === 'hardware' 
+                ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white ring-1 ring-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
+                : 'bg-gray-900/80 text-gray-300 border border-gray-800 hover:border-blue-500/50'
+              }`}
             >
-              Hardware
-            </button>
+              <span className="relative z-10">Hardware</span>
+              {activeCategory === 'hardware' && (
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600/60 to-blue-400/60 opacity-0"
+                  animate={{ opacity: [0, 0.5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                />
+              )}
+            </motion.button>
           </div>
         </div>
         

@@ -17,6 +17,7 @@ export default {
         'star': 'star 30s linear infinite',
         'button-glow-blue': 'button-glow-blue 2s ease-in-out infinite',
         'title-shake': 'title-shake 2s ease-in-out infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
       },
       textShadow: {
         'blue': '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
@@ -33,6 +34,11 @@ export default {
           '50%': {
             'text-shadow': '0 0 40px rgba(59, 130, 246, 0.8), 0 0 80px rgba(59, 130, 246, 0.4)'
           }
+        },
+        'glow-pulse': {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 1 },
+          '100%': { opacity: 0 }
         },
         'button-glow': {
           '0%, 100%': {
