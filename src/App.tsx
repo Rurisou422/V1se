@@ -22,7 +22,7 @@ const HomePage = () => {
 
   return (
     <>
-      <main className="relative">
+      <main className="relative z-30">
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -118,12 +118,26 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+        {/* Header background image */}
+        <div 
+          className="fixed top-0 left-0 right-0 w-full h-[480px] bg-cover bg-center z-0 after:content-[''] after:absolute after:inset-0 after:bg-black/60" 
+          style={{ 
+            backgroundImage: 'url("/images/header.png")',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 30%',
+          }}
+        >
+          {/* Gradient fade at bottom of header image */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
+        </div>
+        
         {/* Border lines */}
-        <div className="fixed left-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
-        <div className="fixed right-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
+        <div className="fixed left-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent z-10" />
+        <div className="fixed right-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent z-10" />
         
         {/* Stars background */}
-        <div className="fixed inset-0 overflow-hidden">
+        <div className="fixed inset-0 overflow-hidden z-10">
           {/* Generate 75 individual stars with random positions, avoiding edges */}
           {[...Array(75)].map((_, i) => (
             <div
@@ -141,10 +155,10 @@ function App() {
         </div>
         
         {/* Subtle radial gradient overlay */}
-        <div className="fixed inset-0 bg-gradient-radial from-blue-600/10 via-blue-900/5 to-transparent opacity-40 pointer-events-none" />
+        <div className="fixed inset-0 bg-gradient-radial from-blue-600/10 via-blue-900/5 to-transparent opacity-40 pointer-events-none z-20" />
         
         {/* Additional soft glow effect */}
-        <div className="fixed inset-0 bg-gradient-radial from-blue-500/10 via-transparent to-transparent opacity-30 pointer-events-none blur-xl" 
+        <div className="fixed inset-0 bg-gradient-radial from-blue-500/10 via-transparent to-transparent opacity-30 pointer-events-none blur-xl z-20" 
           style={{
             background: 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 25%, transparent 100%)',
           }}
