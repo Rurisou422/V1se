@@ -1,5 +1,6 @@
 {
-  "buildCommand": "npx tsc && npx vite build",
+  "buildCommand": "npm install -g typescript && vite build",
+  "installCommand": "npm install",
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
