@@ -7,6 +7,7 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import Status from './components/Status';
 import StarField from './components/StarField';
+import ChatBot from './components/ChatBot';
 
 const HomePage = () => {
   const scrollToProducts = () => {
@@ -242,7 +243,7 @@ const AppContent = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       {/* Header background image - only visible on home page */}
       {isHomePage && (
         <div 
@@ -285,6 +286,9 @@ const AppContent = () => {
       </Routes>
 
       <Footer />
+      
+      {/* Add ChatBot component */}
+      <ChatBot />
     </div>
   );
 };
