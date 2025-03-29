@@ -598,6 +598,7 @@ const Products = () => {
             
             <motion.button
               onClick={() => setActiveCategory('firmware')}
+              data-category="Firmware"
               className={`relative px-6 py-3 rounded-xl backdrop-blur-sm transition-all overflow-hidden group ${
                 activeCategory === 'firmware' 
                   ? 'bg-gradient-to-r from-cyan-600/20 to-cyan-600/5 shadow-[0_0_15px_rgba(8,145,178,0.2)] border border-cyan-500/30' 

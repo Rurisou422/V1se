@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Games options
@@ -13,6 +13,7 @@ const ChatBot = () => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
   const [isTyping, setIsTyping] = useState(false);
   const [message, setMessage] = useState('');
+  const typingTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -23,19 +24,48 @@ const ChatBot = () => {
     }
   };
   
-  const simulateTyping = (text: string) => {
+  const simulateTyping = (text: string, callback?: () => void) => {
     setIsTyping(true);
     setMessage('');
     
     let i = 0;
-    const typing = setInterval(() => {
+    // Clear any existing interval
+    if (typingTimerRef.current) {
+      clearInterval(typingTimerRef.current);
+    }
+    
+    typingTimerRef.current = setInterval(() => {
       setMessage((prev) => prev + text.charAt(i));
       i++;
       if (i === text.length) {
-        clearInterval(typing);
+        if (typingTimerRef.current) {
+          clearInterval(typingTimerRef.current);
+          typingTimerRef.current = null;
+        }
         setIsTyping(false);
+        if (callback) {
+          setTimeout(callback, 500); // Small delay before executing callback
+        }
       }
     }, 40);
+  };
+  
+  const scrollToFirmware = () => {
+    // Find the firmware section by id or class
+    const firmwareSection = document.getElementById('products');
+    if (firmwareSection) {
+      // Set the activeCategory to 'firmware' if possible
+      const firmwareCategoryButton = document.querySelector('[data-category="Firmware"]');
+      if (firmwareCategoryButton) {
+        (firmwareCategoryButton as HTMLElement).click();
+      }
+      
+      firmwareSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        // Close the chat after navigation
+        setIsOpen(false);
+      }, 1500);
+    }
   };
   
   const handleGameSelect = (game: string) => {
@@ -43,7 +73,7 @@ const ChatBot = () => {
     
     // Different responses based on selection
     if (game === 'fortnite') {
-      simulateTyping("Great choice! Starting Fortnite match finder...");
+      simulateTyping("Great! Let's have a look at our firmware working great for Fortnite...", scrollToFirmware);
     } else if (game === 'valorant') {
       simulateTyping("Excellent! Preparing Valorant lobby...");
     } else {
