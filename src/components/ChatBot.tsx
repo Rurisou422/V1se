@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Games options
 const GAME_OPTIONS = [
   { id: 'fortnite', name: 'Fortnite', icon: <img src="/images/Fortnite_Icon.png" alt="Fortnite" className="w-5 h-5 object-contain" /> },
-  { id: 'valorant', name: 'Valorant', icon: '🎯' },
-  { id: 'both', name: 'Both', icon: '🔥' }
+  { id: 'valorant', name: 'Valorant', icon: <img src="/images/Valorant_Logo.png" alt="Valorant" className="w-5 h-5 object-contain" /> },
+  { id: 'both', name: 'Both', icon: null }
 ];
 
 const ChatBot = () => {
@@ -140,7 +140,7 @@ const ChatBot = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="mr-2 text-lg flex items-center justify-center">{game.icon}</span>
+                      {game.icon && <span className="mr-2 text-lg flex items-center justify-center">{game.icon}</span>}
                       <span>{game.name}</span>
                     </motion.button>
                   ))}
