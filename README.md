@@ -47,10 +47,4 @@ yarn dev
 npm run build
 # or
 yarn build
-```
-
-## Deployment
-
-This project is configured for easy deployment to Netlify.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Rurisou422/Test) 
+``` 
