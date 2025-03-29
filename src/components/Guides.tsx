@@ -16,29 +16,29 @@ const GuideItem: React.FC<{ guide: Guide }> = ({ guide }) => {
   
   return (
     <motion.div 
-      className="bg-[#0a1523]/80 rounded-xl overflow-hidden border border-cyan-900/30"
+      className="bg-[#121824]/70 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700/40 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <motion.div 
-        className={`p-6 cursor-pointer ${isExpanded ? 'border-b border-cyan-900/30' : ''}`}
+        className={`px-5 py-4 cursor-pointer ${isExpanded ? 'border-b border-gray-700/30' : ''}`}
         onClick={() => setIsExpanded(!isExpanded)}
-        whileHover={{ backgroundColor: 'rgba(14, 27, 46, 0.8)' }}
+        whileHover={{ backgroundColor: 'rgba(23, 32, 48, 0.6)' }}
       >
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold mb-1 text-cyan-400">{guide.title}</h2>
-            <p className="text-yellow-400 font-medium">{guide.subtitle}</p>
+            <h2 className="text-xl font-medium mb-0.5 text-cyan-400">{guide.title}</h2>
+            <p className="text-yellow-400/90 text-sm font-medium">{guide.subtitle}</p>
           </div>
           <div className="ml-4 flex-shrink-0">
             <motion.div 
               animate={{ rotate: isExpanded ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-cyan-900/30 rounded-full p-1"
+              className="bg-gray-800/50 rounded-full p-1"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
               </svg>
             </motion.div>
           </div>
@@ -54,16 +54,16 @@ const GuideItem: React.FC<{ guide: Guide }> = ({ guide }) => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="p-6 pt-3">
-              <div className="prose prose-invert max-w-none">
+            <div className="px-5 py-4">
+              <div className="prose prose-invert prose-sm max-w-none">
                 {guide.content}
                 
                 {guide.image && (
-                  <div className="mt-6 flex justify-center">
+                  <div className="mt-4 flex justify-center">
                     <img 
                       src={guide.image} 
                       alt={guide.title} 
-                      className="rounded-lg border border-gray-700 shadow-lg max-w-full"
+                      className="rounded-md border border-gray-700/50 shadow-md max-w-full"
                     />
                   </div>
                 )}
@@ -84,9 +84,9 @@ const Guides: React.FC = () => {
       title: 'PC stuck on boot with VGK error',
       subtitle: 'Firmware driver most likely interrupted with real WiFi card or loaded wrong drivers',
       content: (
-        <div className="space-y-4">
-          <div className="bg-[#061626]/80 rounded-lg p-4 border-l-4 border-cyan-600">
-            <ol className="list-decimal list-inside space-y-2 text-gray-200">
+        <div className="space-y-3">
+          <div className="bg-[#131b2a]/60 backdrop-blur-sm rounded-md p-3 border-l-2 border-cyan-600/60">
+            <ol className="list-decimal list-inside space-y-1.5 text-gray-300 text-sm">
               <li>Unplug DMA device, boot Windows</li>
               <li>Disable real WiFi from device manager</li>
               <li>Show hidden devices</li>
@@ -96,7 +96,7 @@ const Guides: React.FC = () => {
               <li>Plug in DMA</li>
               <li>Boot PC (90% of freeze issues are fixed this way)</li>
             </ol>
-            <p className="mt-4 text-red-400 font-medium">For remaining freeze issues, ask DIVINER to rebuild firmware 😈</p>
+            <p className="mt-3 text-red-400/90 text-sm font-medium">For remaining freeze issues, ask DIVINER to rebuild firmware 😈</p>
           </div>
         </div>
       ),
@@ -107,8 +107,8 @@ const Guides: React.FC = () => {
       title: 'Speed test not working',
       subtitle: 'Most likely driver not loaded (yellow error in Device Manager)',
       content: (
-        <div className="bg-[#061626]/80 rounded-lg p-4 border-l-4 border-cyan-600">
-          <ol className="list-decimal list-inside space-y-2 text-gray-200">
+        <div className="bg-[#131b2a]/60 backdrop-blur-sm rounded-md p-3 border-l-2 border-cyan-600/60">
+          <ol className="list-decimal list-inside space-y-1.5 text-gray-300 text-sm">
             <li>Hold power button until PC turns off</li>
             <li>Turn on PC after 10 seconds wait</li>
             <li>If not working, reflash the firmware</li>
@@ -122,8 +122,8 @@ const Guides: React.FC = () => {
       title: 'Driver installation failing',
       subtitle: 'Common driver installation issues and solutions',
       content: (
-        <div className="bg-[#061626]/80 rounded-lg p-4 border-l-4 border-cyan-600">
-          <ol className="list-decimal list-inside space-y-2 text-gray-200">
+        <div className="bg-[#131b2a]/60 backdrop-blur-sm rounded-md p-3 border-l-2 border-cyan-600/60">
+          <ol className="list-decimal list-inside space-y-1.5 text-gray-300 text-sm">
             <li>Make sure all antivirus software is disabled temporarily</li>
             <li>Run the installer as Administrator</li>
             <li>Disconnect from the internet during installation</li>
@@ -137,20 +137,20 @@ const Guides: React.FC = () => {
 
   return (
     <div className="pt-32 pb-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold mb-4">Troubleshooting Guides</h1>
+          <h1 className="text-4xl font-bold mb-3">Troubleshooting Guides</h1>
           <p className="text-lg text-gray-300">
             Common issues and solutions for DIVINER products
           </p>
         </motion.div>
 
-        <div className="grid gap-6">
+        <div className="grid gap-4">
           {guides.map(guide => (
             <GuideItem key={guide.id} guide={guide} />
           ))}
@@ -160,17 +160,17 @@ const Guides: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gradient-to-r from-cyan-900/30 to-indigo-900/30 rounded-xl overflow-hidden border border-cyan-800/30 p-6 text-center mt-6"
+            className="bg-gradient-to-r from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700/40 p-5 text-center mt-4"
           >
-            <h2 className="text-2xl font-bold mb-3">Need more help?</h2>
-            <p className="text-gray-300 mb-4">
+            <h2 className="text-xl font-semibold mb-2">Need more help?</h2>
+            <p className="text-gray-300 text-sm mb-3">
               Our support team is available to assist with any complex issues not covered in these guides.
             </p>
             <a 
               href="#" 
-              className="inline-flex items-center px-6 py-3 bg-cyan-700 hover:bg-cyan-600 rounded-lg font-medium transition-colors shadow-lg"
+              className="inline-flex items-center px-4 py-2 bg-cyan-800/80 hover:bg-cyan-700/90 rounded-md text-sm font-medium transition-colors shadow-md"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
               </svg>
               Contact Support
