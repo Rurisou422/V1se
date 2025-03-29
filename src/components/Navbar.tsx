@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -9,23 +9,51 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
   return (
     <Link 
       to={to} 
-      className={`text-gray-100 hover:text-white transition-all duration-300 relative group font-medium text-[15px] tracking-wide hover:text-shadow-blue hover:scale-110 ${isActive ? 'text-white text-shadow-blue' : ''}`}
+      className={`text-gray-100 hover:text-white transition-all duration-300 relative group font-medium text-[15px] tracking-wide hover:text-shadow-cyan hover:scale-110 ${isActive ? 'text-white text-shadow-cyan' : ''}`}
     >
       {children}
-      <span className={`absolute -bottom-1 left-0 h-[2px] bg-blue-500 transition-all duration-300 ${isActive ? 'w-full shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'w-0 group-hover:w-full group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)]'}`}></span>
+      <span className={`absolute -bottom-1 left-0 h-[2px] bg-cyan-500 transition-all duration-300 ${isActive ? 'w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]' : 'w-0 group-hover:w-full group-hover:shadow-[0_0_10px_rgba(6,182,212,0.5)]'}`}></span>
     </Link>
   );
 };
 
 const Navbar: React.FC = () => {
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      
+      // Show navbar when scrolling up or at the top
+      // Hide navbar when scrolling down and not at the top
+      setVisible(
+        (prevScrollPos > currentScrollPos) || currentScrollPos < 50
+      );
+      
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm border-b border-gray-800/50">
+    <motion.nav 
+      className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm border-b border-gray-800/50"
+      initial={{ y: 0 }}
+      animate={{ y: visible ? 0 : -100 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-extrabold text-white relative group tracking-wider transition-all duration-300 hover:text-shadow-blue hover:scale-110">
+            <Link to="/" className="text-2xl font-extrabold text-white relative group tracking-wider transition-all duration-300 hover:text-shadow-cyan hover:scale-110">
               DIVINER.GG
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)]"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-cyan-500 transition-all duration-300 group-hover:w-full group-hover:shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
             </Link>
           </div>
           
@@ -40,7 +68,16 @@ const Navbar: React.FC = () => {
                   Store
                 </span>
               </NavLink>
-              <NavLink to="/faq">FAQ</NavLink>
+              <NavLink to="/status">
+                <span className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                  </svg>
+                  Status
+                </span>
+              </NavLink>
               <NavLink to="/firmware">Firmware</NavLink>
               <NavLink to="/hardware">Hardware Bundles</NavLink>
               <NavLink to="/software">Software</NavLink>
@@ -50,7 +87,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0 w-[120px]"></div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

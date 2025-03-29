@@ -1,38 +1,56 @@
-# Diviner
+# DIVINER.GG
 
-A cyberpunk-themed website showcasing products with an immersive, futuristic UI.
+Modern, cyberpunk-themed landing page for DIVINER services featuring animated components, product catalog, and system status.
 
 ## Features
 
-- Cyberpunk visual elements with glowing accents, tech patterns, and grid lines
-- Interactive animations for enhanced user experience
-- Responsive product detail popups with cyberpunk styling
-- Category filtering for various product types
-- Modern UI with futuristic aesthetic
+- Responsive design with modern cyberpunk aesthetic
+- Interactive UI elements with hover effects and animations
+- Product showcase with filtering capability
+- System status monitoring page
+- Built with React, Tailwind CSS, and Framer Motion
 
-## Technologies Used
+## Development
 
-- React
-- TypeScript
-- Tailwind CSS
-- Framer Motion for animations
+### Prerequisites
 
-## Getting Started
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
 
 1. Clone the repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Run the development server:
-   ```
-   npm run dev
-   ```
+```bash
+git clone https://github.com/Rurisou422/Test.git
+cd Test
+```
 
-## Screenshots
+2. Install dependencies
+```bash
+npm install
+# or
+yarn
+```
 
-Check out our cyberpunk-themed product detail popups and sleek UI designs.
+3. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## License
+4. Open your browser and navigate to `http://localhost:5173`
 
-MIT 
+## Building for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+## Deployment
+
+This project is configured for easy deployment to Netlify.
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Rurisou422/Test) 

@@ -24,8 +24,8 @@ export default {
       },
       keyframes: {
         star: {
-          '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(-200vh)' }
+          '0%': { transform: 'translateY(100vh)' },
+          '100%': { transform: 'translateY(-100vh)' }
         },
         glow: {
           '0%, 100%': {
@@ -65,30 +65,51 @@ export default {
           }
         },
         'title-shake': {
-          '0%, 85%, 100%': {
+          '0%, 75%, 100%': {
             transform: 'translateX(0)',
             filter: 'blur(0)',
           },
-          '86%': {
-            transform: 'translateX(-4px) translateY(4px)',
-            filter: 'blur(3px)',
+          // Fast shake sequence
+          '76%': {
+            transform: 'translateX(-4px) translateY(2px)',
+            filter: 'blur(1px)',
           },
-          '88%': {
-            transform: 'translateX(6px) translateY(-4px)',
-            filter: 'blur(4px)',
-          },
-          '90%': {
-            transform: 'translateX(-6px) translateY(2px)',
-            filter: 'blur(4px)',
-          },
-          '92%': {
-            transform: 'translateX(4px) translateY(-2px)',
-            filter: 'blur(3px)',
-          },
-          '94%': {
-            transform: 'translateX(-3px) translateY(1px)',
+          '77%': {
+            transform: 'translateX(5px) translateY(-3px)',
             filter: 'blur(2px)',
-          }
+          },
+          '78%': {
+            transform: 'translateX(-5px) translateY(1px)',
+            filter: 'blur(2px)',
+          },
+          '79%': {
+            transform: 'translateX(4px) translateY(-2px)',
+            filter: 'blur(2px)',
+          },
+          '80%': {
+            transform: 'translateX(-6px) translateY(3px)',
+            filter: 'blur(3px)',
+          },
+          '81%': {
+            transform: 'translateX(6px) translateY(-3px)',
+            filter: 'blur(3px)',
+          },
+          '82%': {
+            transform: 'translateX(-4px) translateY(2px)',
+            filter: 'blur(2px)',
+          },
+          '83%': {
+            transform: 'translateX(5px) translateY(-2px)',
+            filter: 'blur(2px)',
+          },
+          '84%': {
+            transform: 'translateX(-3px) translateY(1px)',
+            filter: 'blur(1px)',
+          },
+          '85%': {
+            transform: 'translateX(2px) translateY(-1px)',
+            filter: 'blur(0)',
+          },
         },
       },
       backgroundImage: {
@@ -101,6 +122,9 @@ export default {
       addUtilities({
         '.text-shadow-blue': {
           'text-shadow': '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
+        },
+        '.text-shadow-cyan': {
+          'text-shadow': '0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
         },
       });
     },
