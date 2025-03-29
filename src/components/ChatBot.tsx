@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Games options
 const GAME_OPTIONS = [
-  { id: 'fortnite', name: 'Fortnite', icon: '🎮' },
+  { id: 'fortnite', name: 'Fortnite', icon: <img src="/images/Fortnite_Icon.png" alt="Fortnite" className="w-5 h-5 object-contain" /> },
   { id: 'valorant', name: 'Valorant', icon: '🎯' },
   { id: 'both', name: 'Both', icon: '🔥' }
 ];
@@ -140,7 +140,7 @@ const ChatBot = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="mr-2 text-lg">{game.icon}</span>
+                      <span className="mr-2 text-lg flex items-center justify-center">{game.icon}</span>
                       <span>{game.name}</span>
                     </motion.button>
                   ))}
