@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Status from './components/Status';
 import StarField from './components/StarField';
 import ChatBot from './components/ChatBot';
+import Guides from './components/Guides';
 
 const HomePage = () => {
   const scrollToProducts = () => {
@@ -283,6 +284,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/status" element={<Status />} />
+        <Route path="/guides" element={<Guides />} />
       </Routes>
 
       <Footer />
